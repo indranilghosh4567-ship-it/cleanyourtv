@@ -18,14 +18,15 @@ jobs:
           distribution: 'temurin'
 
       - name: Grant Execute Permission
-        run: chmod +x gradlew
+        run: chmod +x launcher/gradlew
 
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug --stacktrace
+      - name: Build Launcher APK
+        working-directory: launcher
+        run: ./gradlew assemble --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: CleanYourTV-Debug-APK
-          path: app/build/outputs/apk/debug/*.apk
+          name: CleanYourTV-Launcher-APK
+          path: launcher/app/build/outputs/apk/**/*.apk
           
